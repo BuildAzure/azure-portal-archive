@@ -1,0 +1,14 @@
+body {
+}
+
+.question-pool .question .description img {
+    width: 100%;
+}
+
+.social-nav .twitter-share-button {
+    margin-top: 1em;
+}
+
+#navbar.in .social-nav .twitter-share-button {
+    margin-left: 1em;
+}

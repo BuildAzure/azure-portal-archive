@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <title>Azure Portal Screenshot Archive - from Build Azure</title>
+
+        <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="site.css">
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.2.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.4/bootstrap.min.js"></script>
+
+        <script>
+            $(function(){
+                $('#selectDate, #selectTheme, #selectSection').change(function(){
+                
+                    var url = '{theme}/{section}/{date}.png';
+
+                    url = url.replace('{date}', $('#selectDate').val());
+                    url = url.replace('{theme}', $('#selectTheme').val());
+                    url = url.replace('{section}', $('#selectSection').val())
+
+                    $('#img').attr('src', url);
+                });
+
+                $('#img').dblclick(function(){
+                    var elem = $('#selectTheme')[0],
+                        currentIndex = elem.selectedIndex,
+                        newIndex = currentIndex + 1,
+                        totalCountOptions = $('#selectTheme option').length;
+                    if (newIndex >= totalCountOptions) {
+                        newIndex = 0;
+                    }
+                    elem.selectedIndex = newIndex;
+                    $(elem).change();
+                });
+
+                $('#selectTheme').change();
+            });
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Azure Portal Screenshot Archive</a>
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <section class="container">
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="selectDate">As of: </label>
+                    <select id="selectDate" class="form-control">
+                        <option value="2018-03-22">Latest</option>
+                    </select>
+                </div>
+            
+                <div class="form-group"></div>
+                    <label for="selectTheme">Theme: </label>
+                    <select id="selectTheme" class="form-control">
+                        <option value="Default">Default</option>
+                        <option value="Light">Light</option>
+                        <option value="Dark">Dark</option>>
+                        <option value="Blue">Blue</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectSection">Page / Section: </label>
+                    <select id="selectSection" class="form-control">
+                        <option value="Dashboard">Dashboard</option>
+                        <option value="Dashboard-AllServices">Dashboard - All Services</option>
+                        <option value="AllResources">All Resources</option>
+                    </select>
+                </div>
+
+            </form>
+        </section>
+        <section class="container">
+            <img id='img' style="width: 100%" src="Default/Dashboard/2018-03-22.png">
+        </section>
+        <section class="container">
+            <em>Disclaimer: Microsoft Azure and other products are trademarked by Microsoft and their respective owners. This archive is just an archive of screenshots that is meant to preserve a history of what the Azure Portal User Interface has looked like over time.</em><br/>
+            Copyright &copy; 2018 <a href="http://buildazure.com">Build Azure</a>. Licenses under <a href="https://github.com/BuildAzure/azure-portal-archive/blob/master/LICENSE">MIT License</a>.
+        </section>
+    </body>
+</html>
